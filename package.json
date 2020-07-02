@@ -1,0 +1,117 @@
+{
+  "name": "react-light-image",
+  "version": "1.0.0",
+  "description": "another react image viewer",
+  "keywords": [
+    "react",
+    "image viewer"
+  ],
+  "homepage": "https://github.com/whereishappiness/react-light-image",
+  "bugs": {
+    "url": "https://github.com/whereishappiness/react-light-image/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:whereishappiness/react-light-image.git"
+  },
+  "license": "ISC",
+  "author": "roger",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rimraf lib && rollup -c",
+    "build:book": "build-storybook -c .storybook  -s ./stories/public -o .out",
+    "compile": "tsc",
+    "format": "prettier-standard --format",
+    "lint": "eslint {.storybook,stories,src,__tests__}/**/* --ext .{{t,j}s{,x}}",
+    "lint:fix": "yarn lint --fix",
+    "start": "start-storybook -s ./stories/public -p 6006",
+    "test": "jest",
+    "test:cover": "jest --coverage"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{{t,j}s{,x}}": [
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-centered": "^5.3.19",
+    "@storybook/addon-console": "^1.2.1",
+    "@storybook/addon-jest": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addon-notes": "^5.3.19",
+    "@storybook/addon-storysource": "^5.3.19",
+    "@storybook/addon-viewport": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/core": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@storybook/source-loader": "^5.3.19",
+    "@testing-library/jest-dom": "^5.10.1",
+    "@testing-library/react": "^10.3.0",
+    "@types/classnames": "^2.2.10",
+    "@types/file-saver": "^2.0.1",
+    "@types/jest": "^26.0.0",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
+    "cssnano": "^4.1.10",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^23.13.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "file-saver": "^2.0.2",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "less": "^3.11.3",
+    "less-loader": "^6.1.1",
+    "lint-staged": "^10.2.11",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-nested": "^4.2.1",
+    "postcss-simple-vars": "^5.0.2",
+    "prettier": "^2.0.5",
+    "prettier-standard": "^16.3.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.17.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-postcss": "^3.1.2",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "screenfull": "^5.0.2",
+    "style-loader": "^1.2.1",
+    "stylelint-config-recommended": "^3.0.0",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0"
+  },
+  "peerDependencies": {
+    "classnames": "^2.2.6",
+    "file-saver": "^2.0.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "screenfull": "^5.0.2"
+  }
+}

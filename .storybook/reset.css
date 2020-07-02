@@ -1,0 +1,17 @@
+html{
+  height:100%;
+}
+body {
+  background-color: transparent;
+  margin:0;
+  height:100%;
+}
+
+#root{
+  height:100%;
+}
+
+#root>div>div{
+  flex:1;
+  height: 100%;
+}

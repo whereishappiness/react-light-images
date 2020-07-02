@@ -1,0 +1,49 @@
+.riv-footer {
+  background-color: rgba(0, 0, 0, 0.45);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #eee;
+  height: 50px;
+  padding: 5px 20px;
+  box-sizing: border-box;
+  z-index: 1100;
+
+  &-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &--title {
+      font-size: 14px;
+      margin: 0;
+      line-height: 20px;
+    }
+
+    &.riv-title-left {
+      text-align: left;
+    }
+
+    &.riv-title-center {
+      text-align: center;
+    }
+
+    &.riv-title-right {
+      text-align: right;
+    }
+
+    &--desc {
+      font-size: 12px;
+      margin: 0;
+      line-height: 16px;
+    }
+  }
+
+  .riv-indicator {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+  }
+}

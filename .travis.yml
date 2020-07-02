@@ -1,0 +1,21 @@
+language: node_js
+node_js: '10'
+branches:
+  only:
+  - master
+cache:
+  directories:
+  - node_modules
+script:
+- echo "skipping tests"
+- npm run build:book
+deploy:
+  provider: pages
+  skip-cleanup: true 
+  github-token: $GITHUB_TOKEN
+  local_dir: ./.out
+  repo: whereishappiness/react-light-image
+  target_branch: gh-pages
+  verbose: true
+  on:
+    branch: master

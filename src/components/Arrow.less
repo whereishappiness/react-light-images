@@ -1,0 +1,57 @@
+.riv-arrow {
+  border-radius: 2px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: transform 0.35s cubic-bezier(0, 0, 0.25, 1) 0s,
+    opacity 0.35s cubic-bezier(0, 0, 0.25, 1) 0s, color 0.2s linear;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &.riv-arrow-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    &:hover {
+      color: #999;
+    }
+  }
+
+  &.riv-arrow-left {
+    left: 0;
+
+    &.hide {
+      transform: translateX(-40px);
+      opacity: 0;
+    }
+  }
+
+  &.riv-arrow-right {
+    right: 0;
+
+    &.hide {
+      transform: translateX(40px);
+      opacity: 0;
+    }
+  }
+
+  &.riv-arrow-round {
+    border-radius: 50%;
+
+    &.riv-arrow-left {
+      left: 10px;
+    }
+
+    &.riv-arrow-right {
+      right: 10px;
+    }
+  }
+}

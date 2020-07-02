@@ -1,0 +1,432 @@
+.riv-spin {
+  &-double-bounce,
+  &-rotating-plane {
+    width: 40px;
+    height: 40px;
+    margin: 40px auto;
+  }
+
+  &-rotating-plane {
+    background-color: currentColor;
+    animation: riv-rotatePlane 1.2s infinite ease-in-out;
+  }
+
+  @keyframes riv-rotatePlane {
+    0% {
+      transform: perspective(120px) rotateX(0) rotateY(0);
+    }
+    50% {
+      transform: perspective(120px) rotateX(-180.1deg) rotateY(0);
+    }
+    100% {
+      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+  }
+
+  &-double-bounce {
+    position: relative;
+
+    .riv-spin-child {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: currentColor;
+      opacity: 0.6;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: riv-doublebounce 2s infinite ease-in-out;
+    }
+  }
+
+  &-chasing-dots &-child,
+  &-spinner-pulse,
+  &-three-bounce &-child {
+    background-color: currentColor;
+    border-radius: 100%;
+  }
+
+  &-double-bounce &-double-bounce2 {
+    animation-delay: -1s;
+  }
+
+  @keyframes riv-doublebounce {
+    0%,
+    100% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+
+  &-wave {
+    margin: 40px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+    .riv-spin-rect {
+      background-color: currentColor;
+      height: 100%;
+      width: 6px;
+      display: inline-block;
+      animation: riv-waveStretchDelay 1.2s infinite ease-in-out;
+    }
+    .riv-spin-rect1 {
+      animation-delay: -1.2s;
+    }
+    .riv-spin-rect2 {
+      animation-delay: -1.1s;
+    }
+    .riv-spin-rect3 {
+      animation-delay: -1s;
+    }
+    .riv-spin-rect4 {
+      animation-delay: -0.9s;
+    }
+    .riv-spin-rect5 {
+      animation-delay: -0.8s;
+    }
+  }
+
+  @keyframes riv-waveStretchDelay {
+    0%,
+    100%,
+    40% {
+      transform: scaleY(0.4);
+    }
+    20% {
+      transform: scaleY(1);
+    }
+  }
+
+  &-wandering-cubes {
+    margin: 40px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    .riv-spin-cube {
+      background-color: currentColor;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: riv-wanderingCube 1.8s ease-in-out -1.8s infinite both;
+
+      &2 {
+        animation-delay: -0.9s;
+      }
+    }
+  }
+  @keyframes riv-wanderingCube {
+    0% {
+      transform: rotate(0);
+    }
+    25% {
+      transform: translateX(30px) rotate(-90deg) scale(0.5);
+    }
+    50% {
+      transform: translateX(30px) translateY(30px) rotate(-179deg);
+    }
+    50.1% {
+      transform: translateX(30px) translateY(30px) rotate(-180deg);
+    }
+    75% {
+      transform: translateX(0) translateY(30px) rotate(-270deg) scale(0.5);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
+  &-chasing-dots,
+  &-spinner-pulse {
+    width: 40px;
+    height: 40px;
+    margin: 40px auto;
+  }
+
+  &-spinner-pulse {
+    animation: riv-pulseScaleOut 1s infinite ease-in-out;
+  }
+
+  @keyframes riv-pulseScaleOut {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  &-chasing-dots {
+    position: relative;
+    text-align: center;
+    animation: riv-chasingDotsRotate 2s infinite linear;
+
+    .riv-spin-child {
+      width: 60%;
+      height: 60%;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      animation: riv-chasingDotsBounce 2s infinite ease-in-out;
+    }
+
+    .riv-spin-dot2 {
+      top: auto;
+      bottom: 0;
+      animation-delay: -1s;
+    }
+  }
+
+  @keyframes riv-chasingDotsRotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes riv-chasingDotsBounce {
+    0%,
+    100% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+
+  &-three-bounce {
+    margin: 40px auto;
+    width: 80px;
+    text-align: center;
+
+    .riv-spin-child {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      animation: riv-three-bounce 1.4s ease-in-out 0s infinite both;
+    }
+
+    .riv-spin-bounce1 {
+      animation-delay: -0.32s;
+    }
+    .riv-spin-bounce2 {
+      animation-delay: -0.16s;
+    }
+  }
+
+  @keyframes riv-three-bounce {
+    0%,
+    100%,
+    80% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+  }
+
+  &-circle .riv-spin-child:before,
+  &-fading-circle .riv-spin-circle:before {
+    display: block;
+    border-radius: 100%;
+    content: '';
+    background-color: currentColor;
+  }
+
+  .circle-loop(@i) when(@i<13) {
+    .riv-spin-circle@{i} {
+      transform: rotate((@i - 1) * 30deg);
+
+      &::before {
+        animation-delay: -1.2s + (@i - 1) * 0.1s;
+      }
+    }
+    .circle-loop(@i+1);
+  }
+
+  &-circle {
+    margin: 40px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    .riv-spin-child {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      &::before {
+        margin: 0 auto;
+        width: 15%;
+        height: 15%;
+        animation: riv-circleBounceDelay 1.2s infinite ease-in-out both;
+      }
+    }
+    .circle-loop(2);
+  }
+
+  @keyframes riv-circleBounceDelay {
+    0%,
+    100%,
+    80% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+  }
+
+  &-cube-grid {
+    width: 40px;
+    height: 40px;
+    margin: 40px auto;
+
+    .riv-spin-cube {
+      width: 33.33%;
+      height: 33.33%;
+      background-color: currentColor;
+      float: left;
+      animation: riv-cubeGridScaleDelay 1.3s infinite ease-in-out;
+    }
+
+    .riv-spin-cube1 {
+      animation-delay: 0.2s;
+    }
+    .riv-spin-cube2 {
+      animation-delay: 0.3s;
+    }
+    .riv-spin-cube3 {
+      animation-delay: 0.4s;
+    }
+    .riv-spin-cube4 {
+      animation-delay: 0.1s;
+    }
+    .riv-spin-cube5 {
+      animation-delay: 0.2s;
+    }
+    .riv-spin-cube6 {
+      animation-delay: 0.3s;
+    }
+    .riv-spin-cube7 {
+      animation-delay: 0s;
+    }
+    .riv-spin-cube8 {
+      animation-delay: 0.1s;
+    }
+    .riv-spin-cube9 {
+      animation-delay: 0.2s;
+    }
+
+    @keyframes riv-cubeGridScaleDelay {
+      0%,
+      100%,
+      70% {
+        transform: scale3D(1, 1, 1);
+      }
+      35% {
+        transform: scale3D(0, 0, 1);
+      }
+    }
+  }
+
+  &-fading-circle {
+    margin: 40px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    .riv-spin-circle {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      &::before {
+        width: 15%;
+        height: 15%;
+        animation: riv-circleFadeDelay 1.2s infinite ease-in-out both;
+      }
+    }
+    .circle-loop(2);
+  }
+  @keyframes riv-circleFadeDelay {
+    0%,
+    100%,
+    39% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+
+  .cube-loop(@i) when(@i<5) {
+    .riv-spin-cube@{i} {
+      transform: scale(1.1) rotateZ((@i - 1) * 90deg);
+
+      &::before {
+        animation-delay: 0.3s * (@i - 1);
+      }
+    }
+    .cube-loop(@i+1);
+  }
+
+  &-folding-cube {
+    margin: 40px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    transform: rotateZ(45deg);
+
+    .riv-spin-cube {
+      float: left;
+      width: 50%;
+      height: 50%;
+      position: relative;
+      transform: scale(1.1);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: currentColor;
+        animation: riv-foldCubeAngle 2.4s infinite linear both;
+        transform-origin: 100% 100%;
+      }
+    }
+
+    .cube-loop(2);
+  }
+
+  @keyframes riv-foldCubeAngle {
+    0%,
+    10% {
+      transform: perspective(140px) rotateX(-180deg);
+      opacity: 0;
+    }
+    25%,
+    75% {
+      transform: perspective(140px) rotateX(0);
+      opacity: 1;
+    }
+    100%,
+    90% {
+      transform: perspective(140px) rotateY(180deg);
+      opacity: 0;
+    }
+  }
+}

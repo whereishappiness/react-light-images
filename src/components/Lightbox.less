@@ -1,0 +1,26 @@
+.riv-lightbox {
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  .riv-header-title {
+    font-size: 13px;
+    &--index {
+      &::after {
+        content: '/';
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .riv-arrow {
+    position: fixed;
+    z-index: 1100;
+    top: 50%;
+    margin-top: -20px;
+  }
+}
