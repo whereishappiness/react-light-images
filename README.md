@@ -4,6 +4,10 @@ another react image viewer
 
 inspired by [lightGallery](https://github.com/sachinchoolur/lightGallery)
 
+## screenshot
+
+![screenshot](https://whereishappiness.github.io/react-image-viewer/screenshot.jpg)
+
 ## demo
 
 https://whereishappiness.github.io/react-light-images
