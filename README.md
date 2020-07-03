@@ -5,7 +5,7 @@ inspired by [lightGallery](https://github.com/sachinchoolur/lightGallery)
 
 ## screenshot
 
-![screenshot](https://whereishappiness.github.io/react-image-viewer/screenshot.jpg)
+![screenshot](screenshot.jpg)
 
 ## demo
 
