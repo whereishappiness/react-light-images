@@ -14,7 +14,7 @@ deploy:
   skip-cleanup: true 
   github-token: $GITHUB_TOKEN
   local_dir: ./.out
-  repo: whereishappiness/react-light-image
+  repo: whereishappiness/react-light-images
   target_branch: gh-pages
   verbose: true
   on:

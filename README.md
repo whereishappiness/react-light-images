@@ -1,5 +1,4 @@
 # react-light-images
-
 another react image viewer
 
 inspired by [lightGallery](https://github.com/sachinchoolur/lightGallery)

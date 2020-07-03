@@ -8,7 +8,7 @@ storiesOf('Components', module).add(
   () => {
     const degree = select('degree', [0, 90, 180, 270], 0);
     const scale = select('scale', [0.5, 1, 2, 3, 4, 5], 1);
-    const url = 'https://whereishappiness.github.io/react-image-viewer/a.jpg';
+    const url = 'https://whereishappiness.github.io/react-light-images/a.jpg';
 
     return <ImageItem src={url} degree={degree} scale={scale} spinType="double-bounce" />;
   },
