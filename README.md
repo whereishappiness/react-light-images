@@ -16,6 +16,7 @@ https://whereishappiness.github.io/react-light-images
 * Supports zoom.
 * Supports rotate.
 * Responsive images.
+* Auto play.
 
 ## Get Started
 
