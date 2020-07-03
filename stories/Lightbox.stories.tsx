@@ -9,22 +9,22 @@ storiesOf('Components', module).add(
     const dataSource: Array<ImageDataItem> = [
       {
         title: 'aaa',
-        src: 'https://whereishappiness.github.io/react-image-viewer/a.jpg',
+        src: 'https://whereishappiness.github.io/react-light-images/a.jpg',
         description: 'picture from devserver',
       },
       {
         title: 'bbb',
-        src: 'https://whereishappiness.github.io/react-image-viewer/b.jpg',
+        src: 'https://whereishappiness.github.io/react-light-images/b.jpg',
         description: 'picture from devserver',
       },
       {
         title: 'ccc',
-        src: 'https://whereishappiness.github.io/react-image-viewer/c.jpg',
+        src: 'https://whereishappiness.github.io/react-light-images/c.jpg',
         description: 'picture from devserver',
       },
       {
         title: 'ddd',
-        src: 'https://whereishappiness.github.io/react-image-viewer/d.jpg',
+        src: 'https://whereishappiness.github.io/react-light-images/d.jpg',
         description: 'picture from devserver',
       },
       {
