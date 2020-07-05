@@ -1,18 +1,29 @@
 {
   "name": "react-light-images",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "another react image viewer",
   "keywords": [
     "react",
-    "image viewer"
+    "reactjs",
+    "es6",
+    "javascript",
+    "lightbox",
+    "react images",
+    "react gallery",
+    "image viewer",
+    "react viewer",
+    "image gallery",
+    "images gallery",
+    "react gallery component",
+    "react images component"
   ],
-  "homepage": "https://github.com/whereishappiness/react-light-image",
+  "homepage": "https://github.com/whereishappiness/react-light-images",
   "bugs": {
-    "url": "https://github.com/whereishappiness/react-light-image/issues"
+    "url": "https://github.com/whereishappiness/react-light-images/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:whereishappiness/react-light-image.git"
+    "url": "git@github.com:whereishappiness/react-light-images.git"
   },
   "license": "ISC",
   "author": "roger",
