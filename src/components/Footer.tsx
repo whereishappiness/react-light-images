@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 import { Indicator } from './Indicator';
 import { ImageDataItem } from './interfaces';
@@ -16,14 +16,14 @@ export interface FooterProps {
 
 const MAX_SIZE = 15;
 
-export const Footer: FunctionComponent<FooterProps> = (props) => {
+export const Footer: FC<FooterProps> = (props) => {
   const {
-    active,
-    dataSource,
-    titlePosition,
-    description,
-    indicator,
-    onIndicatorChange,
+    active = 0,
+    dataSource=[],
+    titlePosition="left",
+    description=false,
+    indicator=true,
+    onIndicatorChange=FUNC_EMPTY,
   } = props;
 
   const current = dataSource ? dataSource[active] : null;
@@ -53,13 +53,4 @@ export const Footer: FunctionComponent<FooterProps> = (props) => {
       )}
     </div>
   );
-};
-
-Footer.defaultProps = {
-  active: 0,
-  dataSource: [],
-  titlePosition: 'left',
-  description: false,
-  indicator: true,
-  onIndicatorChange: FUNC_EMPTY,
 };

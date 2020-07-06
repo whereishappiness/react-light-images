@@ -1,16 +1,18 @@
 import React, {
-  FunctionComponent,
+  FC,
   CSSProperties,
   useRef,
   useEffect,
   useState,
   useCallback,
+  useContext,
 } from 'react';
 import classnames from 'classnames';
 import { Spin } from './Spin';
 import { Info } from '../icons';
 import useDragable, { DragPosition } from '../hooks/useDragable';
-import { FUNC_EMPTY } from '../helper';
+import { FUNC_EMPTY, isDataURL } from '../helper';
+import { ConfigContext } from '../Config';
 import './ImageItem.less';
 
 export interface ImageItemProps {
@@ -65,21 +67,21 @@ function getTranslate(
   }
 }
 
-export const ImageItem: FunctionComponent<ImageItemProps> = (
-  props: ImageItemProps
-) => {
+export const ImageItem: FC<ImageItemProps> = (props: ImageItemProps) => {
   const {
     className,
     style,
     src,
-    active,
+    active = false,
     title,
     scale,
     degree,
-    reseting,
-    spinType,
-    onRest,
+    reseting = false,
+    spinType = 'double-bounce',
+    onRest = FUNC_EMPTY,
   } = props;
+
+  const config = useContext(ConfigContext);
 
   const [url, setUrl] = useState<string>(src);
   const [loading, setLoading] = useState<boolean>(false);
@@ -104,7 +106,8 @@ export const ImageItem: FunctionComponent<ImageItemProps> = (
     if (src) {
       setUrl(src);
       setLoadFail(false);
-      setLoading(true);
+      // exclude dataURL
+      setLoading(isDataURL(src) ? false : true);
     }
   }, [src]);
 
@@ -152,9 +155,9 @@ export const ImageItem: FunctionComponent<ImageItemProps> = (
       {loadfail && (
         <div className="riv-image-fail">
           <Info />
-          加载图片失败，
+          {config.locale.LOAD_FAIL},
           <span className="riv-image-reload" onClick={handleReload}>
-            重新加载
+            {config.locale.LOAD_RETRY}
           </span>
         </div>
       )}
@@ -170,12 +173,4 @@ export const ImageItem: FunctionComponent<ImageItemProps> = (
       />
     </div>
   );
-};
-
-ImageItem.defaultProps = {
-  className: '',
-  style: {},
-  active: false,
-  reseting: false,
-  onRest: FUNC_EMPTY,
 };

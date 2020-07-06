@@ -3,9 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { Lightbox, ImageDataItem } from '../src/components';
 import { ConfigProvider } from '../src/Config';
 import { ZH_CN } from '../src/locales';
+import { useState } from '@storybook/addons';
 
-storiesOf('Config', module).add(
-  'Default',
+storiesOf('Components', module).add(
+  'Config',
   () => {
     const dataSource: Array<ImageDataItem> = [
       {
@@ -36,10 +37,20 @@ storiesOf('Config', module).add(
       },
     ];
 
+    const [visible, setVisible] = useState<boolean>(false);
+
     return (
-      <ConfigProvider value={{ locale: ZH_CN }}>
-        <Lightbox visible dataSource={dataSource} />
-      </ConfigProvider>
+      <div style={{ padding: 50 }}>
+        <button onClick={() => setVisible(true)}>toggle</button>
+        {visible && (
+          <ConfigProvider value={{ locale: ZH_CN }}>
+            <Lightbox
+              onClose={() => setVisible(false)}
+              dataSource={dataSource}
+            />
+          </ConfigProvider>
+        )}
+      </div>
     );
   },
   { notes: 'config' }

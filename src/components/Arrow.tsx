@@ -1,13 +1,14 @@
-import React, { FunctionComponent, CSSProperties, useCallback } from 'react';
+import React, { CSSProperties, useCallback, FC } from 'react';
 import classnames from 'classnames';
 import { Left, Right } from '../icons';
+import { FUNC_EMPTY } from '../helper';
 import './Arrow.less';
 
 export interface ArrowProps {
   className?: string;
   style?: CSSProperties;
   disabled?: boolean;
-  visible?: boolean;
+  visible: boolean;
   size?: 'small' | 'normal' | 'large';
   title?: string;
   type?: 'left' | 'right';
@@ -15,15 +16,15 @@ export interface ArrowProps {
   onClick?: () => void;
 }
 
-interface ArrowSizeItem {
+interface ArrowSize {
   width: number;
   height: number;
 }
 
 interface ArrowSizes {
-  small: ArrowSizeItem;
-  normal: ArrowSizeItem;
-  large: ArrowSizeItem;
+  small: ArrowSize;
+  normal: ArrowSize;
+  large: ArrowSize;
 }
 
 const sizes: ArrowSizes = {
@@ -41,17 +42,17 @@ const sizes: ArrowSizes = {
   },
 };
 
-export const Arrow: FunctionComponent<ArrowProps> = (props) => {
+export const Arrow: FC<ArrowProps> = (props) => {
   const {
     className,
     style,
-    disabled,
-    visible,
+    disabled = false,
+    visible = true,
     title,
-    size,
-    type,
-    round,
-    onClick,
+    size = 'normal',
+    type = 'left',
+    round = false,
+    onClick = FUNC_EMPTY,
   } = props;
   const { width: iconWidth, height: iconHeight } = sizes[size || 'normal'];
 
@@ -85,16 +86,4 @@ export const Arrow: FunctionComponent<ArrowProps> = (props) => {
       {type === 'right' && <Right width={iconWidth} height={iconHeight} />}
     </div>
   );
-};
-
-Arrow.defaultProps = {
-  className: '',
-  disabled: false,
-  visible: true,
-  style: {},
-  size: 'normal',
-  title: '',
-  type: 'left',
-  round: false,
-  onClick: undefined,
 };

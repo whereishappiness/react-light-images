@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  FC,
   ReactNode,
   CSSProperties,
   useCallback,
@@ -30,8 +30,8 @@ export interface HeaderButtonProps {
   onClick?: () => void;
 }
 
-export const HeaderButton: FunctionComponent<HeaderButtonProps> = (props) => {
-  const { disabled, icon, title, onClick } = props;
+export const HeaderButton: FC<HeaderButtonProps> = (props) => {
+  const { disabled = false, icon, title, onClick=FUNC_EMPTY } = props;
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -56,11 +56,6 @@ export const HeaderButton: FunctionComponent<HeaderButtonProps> = (props) => {
   );
 };
 
-HeaderButton.defaultProps = {
-  disabled: false,
-  onClick: FUNC_EMPTY,
-};
-
 export interface HeaderProps {
   children?: ReactNode;
   className?: string;
@@ -75,7 +70,7 @@ export interface HeaderProps {
   rotateRight?: boolean;
   autoplay?: boolean;
   autoPlayDisabled?: boolean;
-  playing?:boolean;
+  playing?: boolean;
   fullscreen?: boolean;
   download?: boolean;
   isFullscreen?: boolean;
@@ -90,35 +85,36 @@ export interface HeaderProps {
   onExit?: () => void;
 }
 
-export const Header: FunctionComponent<HeaderProps> = (props) => {
+export const Header: FC<HeaderProps> = (props) => {
   const {
     children,
     className,
     style,
-    visible,
-    reset,
-    zoom,
-    rotate,
-    rotateLeft,
-    rotateRight,
-    autoplay,
-    fullscreen,
-    download,
-    zoomInDisabled,
-    zoomOutDisabled,
-    autoPlayDisabled,
-    playing,
-    isFullscreen,
-    onReset,
-    onZoomIn,
-    onZoomOut,
-    onRotateLeft,
-    onRotateRight,
-    onAutoPlay,
-    onFullscreen,
-    onDownload,
-    onExit,
+    visible = true,
+    reset = true,
+    zoom = true,
+    rotate = true,
+    rotateLeft = true,
+    rotateRight = true,
+    autoplay = true,
+    fullscreen = true,
+    download = true,
+    zoomInDisabled = false,
+    zoomOutDisabled = false,
+    autoPlayDisabled = false,
+    playing = false,
+    isFullscreen = false,
+    onReset = FUNC_EMPTY,
+    onZoomIn = FUNC_EMPTY,
+    onZoomOut = FUNC_EMPTY,
+    onRotateLeft = FUNC_EMPTY,
+    onRotateRight = FUNC_EMPTY,
+    onAutoPlay = FUNC_EMPTY,
+    onFullscreen = FUNC_EMPTY,
+    onDownload = FUNC_EMPTY,
+    onExit = FUNC_EMPTY,
   } = props;
+
   const config = useContext(ConfigContext);
 
   return (
@@ -207,31 +203,4 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
       </div>
     </div>
   );
-};
-
-Header.defaultProps = {
-  className: '',
-  style: {},
-  visible: true,
-  reset: true,
-  zoom: true,
-  zoomInDisabled: false,
-  zoomOutDisabled: false,
-  rotate: true,
-  rotateLeft: true,
-  rotateRight: true,
-  autoplay: true,
-  playing: false,
-  fullscreen: true,
-  download: true,
-  isFullscreen: false,
-  onReset: FUNC_EMPTY,
-  onZoomIn: FUNC_EMPTY,
-  onZoomOut: FUNC_EMPTY,
-  onRotateLeft: FUNC_EMPTY,
-  onRotateRight: FUNC_EMPTY,
-  onAutoPlay: FUNC_EMPTY,
-  onFullscreen: FUNC_EMPTY,
-  onDownload: FUNC_EMPTY,
-  onExit: FUNC_EMPTY,
 };

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, CSSProperties, useCallback } from 'react';
+import React, { FC, CSSProperties, useCallback } from 'react';
 import classnames from 'classnames';
 import { ImageDataItem } from './interfaces';
 import { FUNC_EMPTY } from '../helper';
@@ -12,8 +12,14 @@ export interface IndicatorProps {
   onChange?: (index: number) => void;
 }
 
-export const Indicator: FunctionComponent<IndicatorProps> = (props) => {
-  const { className, style, dataSource, active, onChange } = props;
+export const Indicator: FC<IndicatorProps> = (props) => {
+  const {
+    className,
+    style,
+    dataSource = [],
+    active = 0,
+    onChange = FUNC_EMPTY,
+  } = props;
   const handleClick = useCallback(
     (index: number) => {
       if (onChange) {
@@ -43,12 +49,4 @@ export const Indicator: FunctionComponent<IndicatorProps> = (props) => {
         ))}
     </div>
   );
-};
-
-Indicator.defaultProps = {
-  className: '',
-  style: {},
-  dataSource: [],
-  active: 0,
-  onChange: FUNC_EMPTY,
 };
