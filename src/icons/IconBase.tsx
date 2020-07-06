@@ -14,22 +14,23 @@ export interface IconBaseProps extends IconProps {
 }
 
 export const IconBase: FunctionComponent<IconBaseProps> = (props) => {
-  const { children, className, ...rest } = props;
+  const {
+    children,
+    className,
+    width = 24,
+    height = 24,
+    viewBox = '0 0 1024 1024',
+  } = props;
+
   return (
     <svg
       className={classnames(['riv-icon', className])}
       fill="CurrentColor"
-      {...rest}
+      width={width}
+      height={height}
+      viewBox={viewBox}
     >
       {children}
     </svg>
   );
-};
-
-IconBase.defaultProps = {
-  className: '',
-  style: {},
-  width: 24,
-  height: 24,
-  viewBox: '0 0 1024 1024',
 };

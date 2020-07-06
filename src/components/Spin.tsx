@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC, ReactNode } from 'react';
 import './Spin.less';
 
 export interface SpinProps {
@@ -17,10 +17,10 @@ export interface SpinProps {
   spinning?: boolean;
 }
 
-export const Spin: FunctionComponent<SpinProps> = (props) => {
-  const { type, spinning } = props;
+export const Spin: FC<SpinProps> = (props) => {
+  const { type = 'rotating-plane', spinning = false } = props;
 
-  let innerNode: React.ReactNode;
+  let innerNode: ReactNode;
   switch (type) {
     case 'rotating-plane':
     case 'spinner-pulse':
@@ -137,9 +137,4 @@ export const Spin: FunctionComponent<SpinProps> = (props) => {
   return spinning ? (
     <div className={`riv-spin riv-spin-${type}`}>{innerNode}</div>
   ) : null;
-};
-
-Spin.defaultProps = {
-  type: 'rotating-plane',
-  spinning: false,
 };

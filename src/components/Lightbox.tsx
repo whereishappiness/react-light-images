@@ -1,11 +1,11 @@
 import React, {
-  FunctionComponent,
   CSSProperties,
   useCallback,
   useState,
   useRef,
   useEffect,
   useContext,
+  FC,
 } from 'react';
 import classnames from 'classnames';
 import FileSaver from 'file-saver';
@@ -20,46 +20,54 @@ import { ConfigContext } from '../Config';
 import { FUNC_EMPTY } from '../helper';
 import './Lightbox.less';
 
-export interface LightboxProps {
-  className?: string;
-  style?: CSSProperties;
-  autoHideControls?: boolean;
-  dataSource: Array<ImageDataItem>;
-  autoplay?: boolean;
-  playDuration?: number;
-  indicator?: boolean;
-  zoomMin?: number;
-  zoomMax?: number;
-  arrow?: boolean;
-  onClose?: () => void;
-}
-
 const ZOOM_MIN = 0.5;
 const ZOOM_MAX = 5;
 const TIMEOUT_AUTOHIDE = 1000 * 5;
 const TIMEOUT_PLAYING = 1000 * 3;
 
-export const Lightbox: FunctionComponent<LightboxProps> = (props) => {
+export interface LightboxProps {
+  className?: string;
+  style?: CSSProperties;
+  dataSource: Array<ImageDataItem>;
+  current?: number;
+  autoHideControls?: boolean;
+  footer?: boolean;
+  indicator?: boolean;
+  arrow?: boolean;
+  autoplay?: boolean;
+  playDuration?: number;
+  rotate?: boolean;
+  zoom?: boolean;
+  zoomMin?: number;
+  zoomMax?: number;
+  onClose?: () => void;
+}
+
+export const Lightbox: FC<LightboxProps> = (props) => {
   const {
     className,
     style,
-    autoplay,
-    playDuration,
-    autoHideControls,
+    current = 0,
     dataSource,
-    indicator,
+    footer = true,
+    indicator = true,
+    arrow = true,
+    autoplay = true,
+    playDuration = TIMEOUT_PLAYING,
+    autoHideControls = true,
+    rotate = true,
+    zoom = true,
     zoomMax = ZOOM_MAX,
     zoomMin = ZOOM_MIN,
-    arrow = true,
-    onClose,
+    onClose = FUNC_EMPTY,
   } = props;
 
-  const [active, setActive] = useState<number>(0);
+  const [active, setActive] = useState<number>(current);
   const [degree, setDegree] = useState<number>(0);
   const [scale, setScale] = useState<number>(1);
   const [playing, setPlaying] = useState<boolean>(false);
   const [reseting, setReseting] = useState<boolean>(false);
-  const [current, setCurrent] = useState<ImageDataItem | null>(null);
+  const [currentItem, setCurrentItem] = useState<ImageDataItem | null>(null);
   const [controlVisible, setControlVisible] = useState<boolean>(true);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -76,8 +84,9 @@ export const Lightbox: FunctionComponent<LightboxProps> = (props) => {
 
     const newValue = !playing;
     setPlaying(newValue);
+
     if (newValue) {
-      timerPlay.current = setInterval(() => {
+      timerPlay.current = window.setInterval(() => {
         setActive((x) => {
           const last = dataSource.length - 1;
           return x === last ? 0 : x + 1;
@@ -85,13 +94,13 @@ export const Lightbox: FunctionComponent<LightboxProps> = (props) => {
       }, playDuration);
     } else {
       if (timerPlay.current) {
-        clearInterval(timerPlay.current);
+        window.clearInterval(timerPlay.current);
       }
     }
 
     return () => {
       if (timerPlay.current) {
-        clearInterval(timerPlay.current);
+        window.clearInterval(timerPlay.current);
       }
     };
   }, [playing, timerPlay, dataSource]);
@@ -160,7 +169,7 @@ export const Lightbox: FunctionComponent<LightboxProps> = (props) => {
 
       setControlVisible(true);
       if (timerHide.current) {
-        clearTimeout(timerHide.current);
+        window.clearTimeout(timerHide.current);
         // rebuild timer
         timerHide.current = window.setTimeout(() => {
           setControlVisible(false);
@@ -184,7 +193,7 @@ export const Lightbox: FunctionComponent<LightboxProps> = (props) => {
   useEffect(() => {
     const item =
       dataSource && dataSource.length > active ? dataSource[active] : null;
-    setCurrent(item);
+    setCurrentItem(item);
   }, [dataSource, active]);
 
   useEffect(() => {
@@ -215,12 +224,14 @@ export const Lightbox: FunctionComponent<LightboxProps> = (props) => {
     >
       <Header
         visible={controlVisible}
-        zoomInDisabled={scale < zoomMin}
-        zoomOutDisabled={scale > zoomMax}
         fullscreen={canFullscreen}
         isFullscreen={isFullscreen}
         autoplay={autoplay}
         playing={playing}
+        rotate={rotate}
+        zoom={zoom}
+        zoomInDisabled={scale < zoomMin}
+        zoomOutDisabled={scale > zoomMax}
         onAutoPlay={handleAutoPlay}
         onDownload={handleDownload}
         onExit={handleExit}
@@ -234,10 +245,9 @@ export const Lightbox: FunctionComponent<LightboxProps> = (props) => {
         <span className="riv-header-title--index">{active + 1}</span>
         <span>{dataSource.length}</span>
       </Header>
-      {current && (
+      {currentItem && (
         <ImageItem
-          key={active}
-          src={current.src}
+          src={currentItem.src}
           reseting={reseting}
           onRest={handleReseted}
           degree={degree}
@@ -263,26 +273,16 @@ export const Lightbox: FunctionComponent<LightboxProps> = (props) => {
           />
         </>
       )}
-      <Footer
-        description
-        titlePosition="center"
-        active={active}
-        dataSource={dataSource}
-        indicator={indicator}
-        onIndicatorChange={handleIndicatorChange}
-      />
+      {footer && (
+        <Footer
+          description
+          titlePosition="center"
+          active={active}
+          dataSource={dataSource}
+          indicator={indicator}
+          onIndicatorChange={handleIndicatorChange}
+        />
+      )}
     </div>
   );
-};
-
-Lightbox.defaultProps = {
-  autoHideControls: true,
-  dataSource: [],
-  autoplay: true,
-  playDuration: TIMEOUT_PLAYING,
-  indicator: true,
-  zoomMax: ZOOM_MAX,
-  zoomMin: ZOOM_MIN,
-  arrow: true,
-  onClose: FUNC_EMPTY,
 };

@@ -18,8 +18,8 @@ import {
   Stop
 } from '../src/icons';
 
-storiesOf('Icons', module).add(
-  'Default',
+storiesOf('Components', module).add(
+  'Icons',
   () => {
     const itemStyle = {
       flex: 1,
