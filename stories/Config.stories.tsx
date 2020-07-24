@@ -46,6 +46,7 @@ storiesOf('Components', module).add(
           <ConfigProvider value={{ locale: ZH_CN }}>
             <Lightbox
               onClose={() => setVisible(false)}
+              beforeDownload={()=> 'http://www.baa'}
               dataSource={dataSource}
             />
           </ConfigProvider>
