@@ -115,7 +115,7 @@ export const Lightbox: FC<LightboxProps> = (props) => {
       if (beforeDownload) {
         downloadURL = beforeDownload();
       }
-      FileSaver.saveAs(fileURL, title);
+      FileSaver.saveAs(downloadURL, title);
     }
   }, [active]);
 
