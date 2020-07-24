@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState, MutableRefObject } from 'react';
+import { useLayoutEffect, useEffect, useState, MutableRefObject } from 'react';
 import screenfull, { Screenfull } from 'screenfull';
 
 export default function useScreenFull(
@@ -6,7 +6,10 @@ export default function useScreenFull(
 ) {
   const [isFull, setIsFull] = useState<boolean>(false);
 
-  useLayoutEffect(() => {
+  const useIsomorphicLayoutEffect =
+    typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+  useIsomorphicLayoutEffect(() => {
     if (!isFull) {
       if (screenfull.isEnabled) {
         try {
