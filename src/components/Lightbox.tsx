@@ -40,6 +40,7 @@ export interface LightboxProps {
   zoom?: boolean;
   zoomMin?: number;
   zoomMax?: number;
+  beforeDownload?: () => string;
   onClose?: () => void;
 }
 
@@ -60,6 +61,7 @@ export const Lightbox: FC<LightboxProps> = (props) => {
     zoomMax = ZOOM_MAX,
     zoomMin = ZOOM_MIN,
     onClose = FUNC_EMPTY,
+    beforeDownload = () => '',
   } = props;
 
   const [active, setActive] = useState<number>(current);
@@ -109,6 +111,10 @@ export const Lightbox: FC<LightboxProps> = (props) => {
     const target = dataSource[active];
     if (target) {
       const { src: fileURL, title } = target;
+      let downloadURL = fileURL;
+      if (beforeDownload) {
+        downloadURL = beforeDownload();
+      }
       FileSaver.saveAs(fileURL, title);
     }
   }, [active]);
