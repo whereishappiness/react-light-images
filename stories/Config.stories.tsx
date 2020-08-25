@@ -44,9 +44,8 @@ storiesOf('Components', module).add(
         <button onClick={() => setVisible(true)}>toggle</button>
         {visible && (
           <ConfigProvider value={{ locale: ZH_CN }}>
-            <Lightbox
+            <Lightbox download={false}
               onClose={() => setVisible(false)}
-              beforeDownload={()=> 'http://www.baa'}
               dataSource={dataSource}
             />
           </ConfigProvider>

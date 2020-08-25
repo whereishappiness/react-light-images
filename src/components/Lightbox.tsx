@@ -35,12 +35,12 @@ export interface LightboxProps {
   indicator?: boolean;
   arrow?: boolean;
   autoplay?: boolean;
+  download?: boolean;
   playDuration?: number;
   rotate?: boolean;
   zoom?: boolean;
   zoomMin?: number;
   zoomMax?: number;
-  beforeDownload?: () => string;
   onClose?: () => void;
 }
 
@@ -54,6 +54,7 @@ export const Lightbox: FC<LightboxProps> = (props) => {
     indicator = true,
     arrow = true,
     autoplay = true,
+    download = true,
     playDuration = TIMEOUT_PLAYING,
     autoHideControls = true,
     rotate = true,
@@ -61,7 +62,6 @@ export const Lightbox: FC<LightboxProps> = (props) => {
     zoomMax = ZOOM_MAX,
     zoomMin = ZOOM_MIN,
     onClose = FUNC_EMPTY,
-    beforeDownload = () => '',
   } = props;
 
   const [active, setActive] = useState<number>(current);
@@ -112,9 +112,6 @@ export const Lightbox: FC<LightboxProps> = (props) => {
     if (target) {
       const { src: fileURL, title } = target;
       let downloadURL = fileURL;
-      if (beforeDownload) {
-        downloadURL = beforeDownload();
-      }
       FileSaver.saveAs(downloadURL, title);
     }
   }, [active]);
@@ -233,6 +230,7 @@ export const Lightbox: FC<LightboxProps> = (props) => {
         fullscreen={canFullscreen}
         isFullscreen={isFullscreen}
         autoplay={autoplay}
+        download={download}
         playing={playing}
         rotate={rotate}
         zoom={zoom}
